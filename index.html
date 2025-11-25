@@ -8,8 +8,7 @@
 <style>
     body {
         margin: 0;
-        background-color: black;
-        overflow: hidden;
+        background: #000;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -18,31 +17,27 @@
     img {
         width: 350px;
         height: auto;
-        object-fit: contain;
-        user-select: none;
-        -webkit-user-drag: none;
     }
 </style>
 
 </head>
 <body>
 
-<img id="spinImg" src="1.jpg">
+<img id="spinImage" src="1.jpg">
 
 <script>
-let totalImages = 4;  // YAHI BADALNA HOTA HAIN (tumhare case me 4 perfect hai)
+let totalImages = 4;  // ← yaha change karte hain jitni pics ho
 let current = 1;
 
-document.addEventListener("mousemove", (e) => {
-    if (e.movementX > 2) {
-        current++;
-        if (current > totalImages) current = 1;
-    } 
-    else if (e.movementX < -2) {
-        current--;
-        if (current < 1) current = totalImages;
+document.addEventListener("mousemove", function(event){
+    let width = window.innerWidth;
+    let percent = event.clientX / width;
+    let index = Math.floor(percent * totalImages) + 1;
+
+    if(index !== current && index <= totalImages){
+        current = index;
+        document.getElementById("spinImage").src = current + ".jpg";
     }
-    document.getElementById("spinImg").src = current + ".jpg";
 });
 </script>
 
