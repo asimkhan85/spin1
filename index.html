@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <title>360 Spin</title>
 </head>
-<body>
+<body style="margin:0;">
   <img id="spin" src="1.jpg" style="width:100%;">
 
   <script>
-    let img = document.getElementById("spin");
-    let total = 4; // total photos
+    let total = 4; // <-- jitni photos hain utna number daalna
     let current = 1;
+    let img = document.getElementById("spin");
 
-    document.body.addEventListener("mousemove", function(e){
+    document.addEventListener("mousemove", function(e){
         current = Math.ceil((e.clientX / window.innerWidth) * total);
         if(current < 1) current = 1;
         if(current > total) current = total;
