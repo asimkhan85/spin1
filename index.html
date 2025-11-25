@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>360 Spin</title>
+</head>
+<body>
+  <img id="spin" src="1.jpg" style="width:100%;">
+
+  <script>
+    let img = document.getElementById("spin");
+    let total = 4; // yaha tumhari total photos ki quantity
+    let current = 1;
+
+    document.body.addEventListener("mousemove", function(e){
+        current = Math.ceil((e.clientX / window.innerWidth) * total);
+        if(current < 1) current = 1;
+        if(current > total) current = total;
+        img.src = current + ".jpg";
+    });
+  </script>
+</body>
+</html>
