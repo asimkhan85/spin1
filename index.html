@@ -1,23 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>360 Spin</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>360 Spin</title>
+
+<style>
+    body {
+        margin: 0;
+        background-color: black;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    img {
+        width: 350px;
+        height: auto;
+        object-fit: contain;
+        user-select: none;
+        -webkit-user-drag: none;
+    }
+</style>
+
 </head>
-<body style="margin:0;">
-  <img id="spin" src="1.jpg" style="width:100%;">
+<body>
 
-  <script>
-    let total = 4; // <-- jitni photos hain utna number daalna
-    let current = 1;
-    let img = document.getElementById("spin");
+<img id="spinImg" src="1.jpg">
 
-    document.addEventListener("mousemove", function(e){
-        current = Math.ceil((e.clientX / window.innerWidth) * total);
-        if(current < 1) current = 1;
-        if(current > total) current = total;
-        img.src = current + ".jpg";
-    });
-  </script>
+<script>
+let totalImages = 4;  // YAHI BADALNA HOTA HAIN (tumhare case me 4 perfect hai)
+let current = 1;
+
+document.addEventListener("mousemove", (e) => {
+    if (e.movementX > 2) {
+        current++;
+        if (current > totalImages) current = 1;
+    } 
+    else if (e.movementX < -2) {
+        current--;
+        if (current < 1) current = totalImages;
+    }
+    document.getElementById("spinImg").src = current + ".jpg";
+});
+</script>
+
 </body>
 </html>
